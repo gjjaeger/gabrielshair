@@ -1,32 +1,37 @@
-<ul>
-  <% @offers.each() do |offer| %>
-  	<div class="row">
+<%if @offers.any?%>
+  <ul>
+    <% @offers.each() do |offer| %>
+    	<div class="row">
 
-  		<div class="panel panel-default">
-				<div class="panel-body searched-offer">
-  				<div class="col-md-4">
-  					<li><%= offer.event.name %></li>
-  				</div>
-      		<div class="col-md-2">
-      			<li>$<%= offer.price %></li>
+    		<div class="panel panel-default">
+  				<div class="panel-body searched-offer">
+    				<div class="col-md-4">
+    					<li><%= offer.event.name %></li>
+    				</div>
+        		<div class="col-md-2">
+        			<li>$<%= offer.price %></li>
+        		</div>
+        		<div class="col-md-3">
+          		<li>
+          		<img style="width: 150px;" src="<%= offer.event.imageurl %>">
+          		</li>
+          	</div>
+        		<div class="col-md-1">
+        			<% if offer.buy_sell %>
+        				<li>Sell</li>
+        			<% else %>
+        				<li>Buy</li>
+        			<% end %>
+        		</div>
+        		<div class="col-md-1 col-md-offset-1">
+        			<button class="btn btn-info"><a href="/offer/<%=offer.id()%>">View</a></button>
+        		</div>
       		</div>
-      		<div class="col-md-3">
-        		<li>
-        		<img style="width: 150px;" src="<%= offer.event.imageurl %>">
-        		</li>
-        	</div>
-      		<div class="col-md-1">
-      			<% if offer.buy_sell %>
-      				<li>Sell</li>
-      			<% else %>
-      				<li>Buy</li>
-      			<% end %>
-      		</div>
-      		<div class="col-md-1 col-md-offset-1">
-      			<button class="btn btn-info"><a href="/offer/<%=offer.id()%>">View</a></button>
-      		</div>
-    		</div>
-    	</div>
-    </div>
-  <% end %>
-</ul>
+      	</div>
+      </div>
+    <% end %>
+  </ul>
+<%else%>
+  <h2 class="text-center">No ads created yet</h2>
+  <a href="/user"><h3 class="text-center">Create ad</h3></a>
+<%end%>

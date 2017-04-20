@@ -9,24 +9,30 @@
       <div class="col-md-7 ">
         <img style="width: 400px;" src="<%= @offer.event.imageurl %>">
       </div>
-
       <div class="col-md-5">
         <ul class="list-group">
           <li class="list-group-item">Event: <%= @offer.event.name %></li>
-          <li></li>
-          <li class="list-group-item">Price: <%=@offer.price %></li>
-          <li class="list-group-item">Contact this user: <%=@offer.user.username %></li>
+          <li class="list-group-item">
+            <form action="/offer/<%= @offer.id() %>" method="post">
+              <input name="_method" type="hidden" value="patch">
+              <label for="price">Price :</label>
+              <input class="form-control" id="price" name="price" type="text" placeholder="<%= @offer.price() %>">
+              <label for="ticket_type">Ticket Type :</label>
+              <input class="form-control" id="ticket_type" name="ticket_type" type="text" placeholder="<%= @offer.ticket_type() %>">
+              <label for="contact">Contact Info :</label>
+              <input class="form-control" id="contact" name="contact" type="text" placeholder="<%= @offer.contact() %>">
+              <button type="submit" class="btn">Update </button>
+            </form>
+          </li>
           <li class="list-group-item">
             <form action="/offer/<%= @offer.id() %>" method="post">
               <input name="_method" type="hidden" value="delete">
               <button type="submit" class="btn btn-danger">Delete </button>
             </form>
           </li>
-
         </ul>
       </div>
-
-  </div>
+    </div>
   </div>
 </div>
 

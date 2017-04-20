@@ -22,14 +22,13 @@
         <option value="<%= event.id()%>"> <%= event.name() %> </option>
         <% end %>
       </select>
-
-
-        <label for="price">Price:</label>
-        <input id="price" name="price" type="number">
-
-
-
-     <input type="radio" name="offer" value="false">Buy
+      <label for="price">Price:</label>
+      <input id="price" name="price" type="number">
+      <label for="ticket_type">Ticket Type/ Zone:</label>
+      <input id="ticket_type" name="ticket_type" type="text">
+      <label for="contact">Your Contact information:</label>
+      <input id="contact" name="contact" type="text">
+      <input type="radio" name="offer" value="false">Buy
       <input type="radio" name="offer" value= "true">Sell
 
 
@@ -55,4 +54,3 @@
     </form>
   </div>
 <% end %>
-

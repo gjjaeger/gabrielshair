@@ -274,7 +274,8 @@ end
 
 #offers many-many table
 get('/offer') do
-  @offers = Offer.all()
+  user = User.find_by username: session[:username]
+  @offers=user.offers
   erb(:offer)
 end
 
@@ -290,30 +291,55 @@ get ('/categorysearch') do
 end
 
 post("/offer") do
+  event_id = params.fetch("event_id").to_i()
+  price = params.fetch("price").to_i()
+  ticket_type=params.fetch("ticket_type")
+  contact=params.fetch("contact")
+  user=User.find_by username: session[:username]
+  bs = params.fetch("offer")
 
-    event_id = params.fetch("event_id").to_i()
-    price = params.fetch("price").to_i()
-    user=User.find_by username: session[:username]
-    bs = params.fetch("offer")
-
-    if bs == "true"
-    @offer = Offer.new({:event_id => event_id, :user_id => user.id, :price => price, :buy_sell => true})
-    else
-    @offer = Offer.new({:event_id => event_id, :user_id => user.id, :price => price, :buy_sell => false})
-    end
-
-    @offer.save()
-    @offers = Offer.all()
-    erb(:offer)
+  if bs == "true"
+  @offer = Offer.create({:event_id => event_id, :user_id => user.id, :price => price, :buy_sell => true, :ticket_type => ticket_type, :contact => contact})
+  else
+  @offer = Offer.create({:event_id => event_id, :user_id => user.id, :price => price, :buy_sell => false, :ticket_type => ticket_type, :contact => contact})
   end
 
-  get('/offer/:id') do
+  redirect("/offer")
+end
+
+get('/offer/:id') do
   @offer=Offer.find(Integer(params.fetch('id')))
   erb(:offer_info)
+end
+
+get('/view-offer/:id') do
+  @offer=Offer.find(Integer(params.fetch('id')))
+  erb(:offer_info_user)
 end
 
 delete("/offer/:id") do
     @offer = Offer.find(params.fetch("id").to_i())
     @offer.delete()
     redirect ('/offer')
+end
+
+patch("/offer/:id")do
+  @offer = Offer.find(params.fetch("id").to_i())
+  if params[:price] != ""
+    price = params[:price]
+  else
+    price=@offer.price
+  end
+  if params[:contact] != ""
+    contact = params[:contact]
+  else
+    contact=@offer.contact
+  end
+  if params[:ticket_type] != ""
+    ticket_type = params[:ticket_type]
+  else
+    ticket_type=@offer.ticket_type
+  end
+  @offer.update({:event_id => @offer.event_id, :user_id => @offer.user_id, :price => price, :buy_sell => @offer.buy_sell, :contact => contact, :ticket_type => ticket_type})
+  redirect ('/offer')
 end

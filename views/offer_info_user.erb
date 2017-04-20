@@ -1,0 +1,33 @@
+<br>
+<div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title text-center">
+    <% if @offer.buy_sell %>
+      Sell
+    <% else %>
+      Buy
+    <% end %>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-7 ">
+        <img style="width: 400px;" src="<%= @offer.event.imageurl %>">
+      </div>
+
+      <div class="col-md-5">
+        <ul class="list-group">
+          <li class="list-group-item">Event: <%= @offer.event.name %></li>
+          <li></li>
+          <li class="list-group-item">Price: <%=@offer.price %></li>
+          <li class="list-group-item">Ticket Type: <%=@offer.ticket_type %></li>
+          <li class="list-group-item">Contact this user: <%=@offer.contact %></li>
+        </ul>
+      </div>
+
+  </div>
+  </div>
+</div>
+
+</div>
