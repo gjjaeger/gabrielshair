@@ -1,14 +1,14 @@
 <form action='/search' method = 'get'>
   <input type='text' name="search" id ="search" placeholder="Search by event or artist name">
-  <button type='submit'>Submit</button>
+  <button type='submit' class='btn'>Submit</button>
 </form>
 
 <div class="panel panel-default">
 
-  <div class="panel-heading">Panel heading without title</div>
+  <div class="panel-heading">Create an ad</div>
   <div class="panel-body">
     <form action="/offer" method="post">
-      <label for="event_id">Select a Event</label>
+      <label for="event_id">Select an Event</label>
       <select id='event_id' name='event_id' type='text'>
         <% @events.each() do |event| %>
         <option value="<%= event.id()%>"> <%= event.name() %> </option>
