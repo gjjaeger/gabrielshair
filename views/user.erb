@@ -1,3 +1,4 @@
+
 <% if login? %>
   <div class="jumbotron">
     <!--  -->
@@ -10,17 +11,18 @@
     </form>
   </div>
 
-  <div class="panel panel-default">
 
-    <div class="panel-heading">Panel heading without title</div>
-    <div class="panel-body">
-      <form action="/offer" method="post">
-        <label for="event_id">Select a Event</label>
-        <select id='event_id' name='event_id' type='text'>
-          <% @events.each() do |event| %>
-          <option value="<%= event.id()%>"> <%= event.name() %> </option>
-          <% end %>
-        </select>
+  <div class="panel panel-default">
+  <div class="panel-heading">Create an ad</div>
+  <div class="panel-body">
+    <form action="/offer" method="post">
+      <label for="event_id">Select an Event</label>
+      <select id='event_id' name='event_id' type='text'>
+        <% @events.each() do |event| %>
+        <option value="<%= event.id()%>"> <%= event.name() %> </option>
+        <% end %>
+      </select>
+
 
         <label for="price">Price:</label>
         <input id="price" name="price" type="number">

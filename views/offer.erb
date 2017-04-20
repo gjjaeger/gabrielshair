@@ -1,38 +1,32 @@
 <ul>
   <% @offers.each() do |offer| %>
   	<div class="row">
-  
-  		<div class="panel panel-default">
-				<div class="panel-body">
 
-  				
-  				<div class="col-md-2">
+  		<div class="panel panel-default">
+				<div class="panel-body searched-offer">
+  				<div class="col-md-4">
   					<li><%= offer.event.name %></li>
   				</div>
-	      		<div class="col-md-2">
-	      			<li><%= offer.price %></li>
-	      		</div>
-	      		<div class="col-md-3">
-	        		<li>
-	        		<img style="width: 150px;" src="<%= offer.event.imageurl %>">
-	        		</li>
-	        	</div>
-	      		<div class="col-md-2">
-	      			<% if offer.buy_sell %>
-	      				<li>Sell</li>
-	      			<% else %>
-	      				<li>Buy</li>
-	      			<% end %>
-	      		</div>
-	      		<div class="col-md-2">
-	      			<button class="btn btn-info"><a href="/offer/<%=offer.id()%>">View</a></button>
-	      		</div>
-	        	
-    		</div> 
+      		<div class="col-md-2">
+      			<li>$<%= offer.price %></li>
+      		</div>
+      		<div class="col-md-3">
+        		<li>
+        		<img style="width: 150px;" src="<%= offer.event.imageurl %>">
+        		</li>
+        	</div>
+      		<div class="col-md-1">
+      			<% if offer.buy_sell %>
+      				<li>Sell</li>
+      			<% else %>
+      				<li>Buy</li>
+      			<% end %>
+      		</div>
+      		<div class="col-md-1 col-md-offset-1">
+      			<button class="btn btn-info"><a href="/offer/<%=offer.id()%>">View</a></button>
+      		</div>
+    		</div>
     	</div>
-    </div>    
+    </div>
   <% end %>
 </ul>
-
-
-     

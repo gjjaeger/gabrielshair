@@ -11,8 +11,6 @@ DB = PG.connect({:dbname => "ticket_development"})
 
   enable :sessions
 
-userTable = {}
-
 helpers do
 
   def login?
@@ -264,13 +262,13 @@ get("/search") do
     @foundArtistEvents=ArtistsEvent.where("artist_id= ?",artist.id)
     @foundArtistEvents.each do |event|
       @foundOffers=Offer.where("event_id= ?",event.event_id)
-
     end
   end
   @foundEvents.each do |event|
     @foundOffers = []
     @foundOffers=Offer.where("event_id= ?",event.id)
   end
+  @user = ""
   erb(:results)
 end
 
@@ -295,13 +293,13 @@ post("/offer") do
 
     event_id = params.fetch("event_id").to_i()
     price = params.fetch("price").to_i()
-
+    user=User.find_by username: session[:username]
     bs = params.fetch("offer")
 
     if bs == "true"
-     @offer = Offer.new({:event_id => event_id, :user_id => 1, :price => price, :buy_sell => true})
-   else
-    @offer = Offer.new({:event_id => event_id, :user_id => 1, :price => price, :buy_sell => false})
+    @offer = Offer.new({:event_id => event_id, :user_id => user.id, :price => price, :buy_sell => true})
+    else
+    @offer = Offer.new({:event_id => event_id, :user_id => user.id, :price => price, :buy_sell => false})
     end
 
     @offer.save()
@@ -314,10 +312,8 @@ post("/offer") do
   erb(:offer_info)
 end
 
-
 delete("/offer/:id") do
-    @offer = Offer.find(params.fetch("id").to_i())  
+    @offer = Offer.find(params.fetch("id").to_i())
     @offer.delete()
     redirect ('/offer')
 end
-
