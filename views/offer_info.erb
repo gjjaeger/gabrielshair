@@ -1,20 +1,32 @@
-
-<img style="width: 150px;" src="<%= @offer.event.imageurl %>">
-
-<%= @offer.price %>
-
-<div class="panel panel-default">
-  <div class="panel-heading"><h1><%= @offer.event.name %></h1></div>
+<br>
+<div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"></h3>
+  </div>
   <div class="panel-body">
-    Panel content
+    <div class="row">
+      <div class="col-md-7 ">
+        <img style="width: 400px;" src="<%= @offer.event.imageurl %>">
+      </div>
+
+      <div class="col-md-5">
+        <ul class="list-group">
+          <li class="list-group-item">Event <%= @offer.event.name %></li>
+          <li></li>
+          <li class="list-group-item">Price <%=@offer.price %></li>
+          <li class="list-group-item">
+            <form action="/offer/<%= @offer.id() %>" method="post">
+              <input name="_method" type="hidden" value="delete">
+              <button type="submit" class="btn btn-danger">Delete </button>
+            </form>
+          </li>
+          
+        </ul>
+      </div>
+     
+  </div>
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Panel title</h3>
-  </div>
-  <div class="panel-body">
-    Panel content
-  </div>
 </div>

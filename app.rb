@@ -311,13 +311,8 @@ post("/offer") do
   erb(:offer_info)
 end
 
-post ('/viewContact') do
-  offer = Offer.find(Integer(params.fetch('offer_id')))
-  @user = User.find(Integer(offer.user_id))
-  redirect ("/search?user_id=#{offer.user_id}")
+delete("/offer/:id") do
+    @offer = Offer.find(params.fetch("id").to_i())
+    @offer.delete()
+    redirect ('/offer')
 end
-#  delete("/offer") do
-#     @offer = Offer.find(params.fetch("id").to_i())
-#     @offer.delete()
-#     redirect ("/")
-# end
