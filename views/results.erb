@@ -4,43 +4,28 @@
     <% @foundOffers.each() do |offer| %>
     	<div class="row">
     		<div class="panel panel-default">
-  				<div class="panel-body">
-    				<div class="col-md-2">
+          <div class="panel-body searched-offer">
+    				<div class="col-md-4">
     					<li><%= offer.event.name %></li>
     				</div>
-	      		<div class="col-md-2">
-	      			<li><%= offer.price %></li>
-	      		</div>
-	      		<div class="col-md-3">
-	        		<li>
-	        		<img style="width: 150px;" src="<%= offer.event.imageurl %>">
-	        		</li>
-	        	</div>
-	      		<div class="col-md-2">
-	      			<% if offer.buy_sell %>
-	      				<li>Sell</li>
-	      			<% else %>
-	      				<li>Buy</li>
-	      			<% end %>
-	      		</div>
-
-	        	<div class="col-md-1">
-    					<li>
-  	  					<form action="/offer" method="post">
-  	  						<input type="hidden" name="_method" value="delete">
-  	  						<button type="submit" class="btn btn-danger"> Delete
-  	  						</button>
-  						  </form>
-  					  </li>
-  				  </div>
-            <div class="col-md-1">
-    					<li>
-  	  					<form action="/viewContact" method="post">
-                  <input type="hidden" name="offer_id" value="<%=offer.id%>">
-                  <button type="submit" class="btn btn-info">View</button>
-  						  </form>
-  					  </li>
-  				  </div>
+        		<div class="col-md-2">
+        			<li>$<%= offer.price %></li>
+        		</div>
+        		<div class="col-md-3">
+          		<li>
+          		<img style="width: 150px;" src="<%= offer.event.imageurl %>">
+          		</li>
+          	</div>
+        		<div class="col-md-1">
+        			<% if offer.buy_sell %>
+        				<li>Sell</li>
+        			<% else %>
+        				<li>Buy</li>
+        			<% end %>
+        		</div>
+        		<div class="col-md-1 col-md-offset-1">
+        			<button class="btn btn-info"><a href="/offer/<%=offer.id()%>">View</a></button>
+        		</div>
       		</div>
       	</div>
       </div>

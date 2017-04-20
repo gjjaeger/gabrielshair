@@ -296,8 +296,8 @@ post("/offer") do
     bs = params.fetch("offer")
 
     if bs == "true"
-     @offer = Offer.new({:event_id => event_id, :user_id => user.id, :price => price, :buy_sell => true})
-   else
+    @offer = Offer.new({:event_id => event_id, :user_id => user.id, :price => price, :buy_sell => true})
+    else
     @offer = Offer.new({:event_id => event_id, :user_id => user.id, :price => price, :buy_sell => false})
     end
 

@@ -1,48 +1,71 @@
-
-<div class="row">
-  <div class="col-md-6">
-    <h3>Create Event</h3>
-    <form action='/event' method='post'>
-      <label for='name'>Name</label><br>
-      <input type='text' name='name' id='name' required="true"><br>
-      <label for='date'>Date</label><br>
-      <input type='date' name='date' id='name' required="true"><br>
-      <label for="duration">Duration (hours)</label><br>
-      <input type="number" name="duration" id="duration" required="true"><br>
-      <label for='imageurl'>Image URL</label><br>
-      <input type='imageurl' name='imageurl' id='name' required="true"><br>
-
-      <label for="artist_id">Select an Artist</label>
-      <select id="artist_id" name="artist_id" type="int" required="true">
-        <% @artists.each() do |artist| %>
-          <option value="<%= artist.id()%>">
-            <%= artist.name() %>
-          </option>
-        <% end %>
-      </select>
-
-      <label for="category_id">Select a Category</label>
-      <select id="category_id" name="category_id" type="int" required="true">
-        <% @categories.each() do |category| %>
-          <option value="<%= category.id()%>">
-            <%= category.name() %>
-          </option>
-        <% end %>
-      </select>
-
-      <label for="venue_id">Select a Venue</label>
-      <select id="venue_id" name="venue_id" type="int" required="true">
-        <% @venues.each() do |venue| %>
-          <option value="<%= venue.id()%>">
-            <%= venue.name() %>
-          </option>
-        <% end %>
-      </select>
-
-      <button type='submit'>Submit</button>
-    </form>
+<div class="event-create">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Create Event</h3>
+      <form action='/event' method='post'>
+        <div class="col-md-3">
+          <label for='name'>Name</label><br>
+          <input class="form-control" type='text' name='name' id='name' required="true"><br>
+        </div>
+        <div class="col-md-3">
+          <label for='date'>Date</label><br>
+          <input class="form-control" type='date' name='date' id='name' required="true"><br>
+        </div>
+        <div class="col-md-3">
+          <label for="duration">Duration (hours)</label><br>
+          <input class="form-control" type="number" name="duration" id="duration" required="true"><br>
+        </div>
+        <div class="col-md-3">
+          <label for='imageurl'>Image URL</label><br>
+          <input class="form-control" type='imageurl' name='imageurl' id='name' required="true"><br>
+        </div>
+    </div>
   </div>
-  <div class="col-md-6">
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+        <div class="col-md-3">
+          <label for="artist_id">Select an Artist</label>
+          <select class="form-control" id="artist_id" name="artist_id" type="int" required="true">
+            <% @artists.each() do |artist| %>
+              <option value="<%= artist.id()%>">
+                <%= artist.name() %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="category_id">Select a Category</label>
+          <select class="form-control" id="category_id" name="category_id" type="int" required="true">
+            <% @categories.each() do |category| %>
+              <option value="<%= category.id()%>">
+                <%= category.name() %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="venue_id">Select a Venue</label>
+          <select class="form-control" id="venue_id" name="venue_id" type="int" required="true">
+            <% @venues.each() do |venue| %>
+              <option value="<%= venue.id()%>">
+                <%= venue.name() %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <button class = "btn" type='submit'>Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <h1>All Events</h1>
     <ul>
       <% @events.each do |event|%>
@@ -125,5 +148,3 @@
     </ul>
   </div>
 </div>
-
-
