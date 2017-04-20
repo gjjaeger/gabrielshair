@@ -35,6 +35,7 @@ get ('/') do
   @venues= Venue.all()
   @artists=Artist.all()
   @offers=Offer.all()
+  @users = User.all()
   erb(:index)
 end
 

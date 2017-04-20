@@ -10,6 +10,13 @@ ul{
 	background: url('/img/event.jpeg');
 	height: 500px;
 }
+.jumbotron-text{
+	color:#eee;
+	text-align: center;
+	font-family: Orbitron, Arial,Helvetica,sans-serif;
+	margin-top: 12%;
+	
+}
 .searchbar{
 	padding:25px;
 	border:1px solid black;

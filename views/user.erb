@@ -1,42 +1,56 @@
-<div class="jumbotron">
-  <!--  -->
-</div>
-<div class="searchbar">
-  <h2><span class="search-text">Find Your Next Event</span></h2>
-  <form action='/search' method = 'get'>
-    <input type='text' name="search" id ="search" placeholder="Search by event or artist name" width="50">
-    <button type='submit' class="search-btn">Search</button>
-  </form>
-</div>
-
-<div class="panel panel-default">
-
-  <div class="panel-heading">Panel heading without title</div>
-  <div class="panel-body">
-    <form action="/offer" method="post">
-      <label for="event_id">Select a Event</label>
-      <select id='event_id' name='event_id' type='text'>
-        <% @events.each() do |event| %>
-        <option value="<%= event.id()%>"> <%= event.name() %> </option>
-        <% end %>
-      </select>
-
-      <label for="price">Price:</label>
-      <input id="price" name="price" type="number">
-
-
-
-   <input type="radio" name="offer" value="false">Buy
-    <input type="radio" name="offer" value= "true">Sell
-
-
-      <button type="submit" class="btn btn-primary">Add</button>
+<% if login? %>
+  <div class="jumbotron">
+    <!--  -->
+  </div>
+  <div class="searchbar">
+    <h2><span class="search-text">Find Your Next Event</span></h2>
+    <form action='/search' method = 'get'>
+      <input type='text' name="search" id ="search" placeholder="Search by event or artist name" width="50">
+      <button type='submit' class="search-btn">Search</button>
     </form>
   </div>
-</div>
 
-<% @categories.each() do |category| %>
-  <form action='/categorysearch' method='get'>
-    <button class="btn" type="submit" value="<%=category.id()%>" name="categorysearch"><%= category.name() %></button>
-  </form>
+  <div class="panel panel-default">
+
+    <div class="panel-heading">Panel heading without title</div>
+    <div class="panel-body">
+      <form action="/offer" method="post">
+        <label for="event_id">Select a Event</label>
+        <select id='event_id' name='event_id' type='text'>
+          <% @events.each() do |event| %>
+          <option value="<%= event.id()%>"> <%= event.name() %> </option>
+          <% end %>
+        </select>
+
+        <label for="price">Price:</label>
+        <input id="price" name="price" type="number">
+
+
+
+     <input type="radio" name="offer" value="false">Buy
+      <input type="radio" name="offer" value= "true">Sell
+
+
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <% @categories.each() do |category| %>
+    <form action='/categorysearch' method='get'>
+      <button class="btn" type="submit" value="<%=category.id()%>" name="categorysearch"><%= category.name() %></button>
+    </form>
+  <% end %>
+<% else %>
+  <div class="jumbotron">
+    <!--  -->
+  </div>
+  <div class="searchbar">
+    <h2><span class="search-text">Find Your Next Event</span></h2>
+    <form action='/search' method = 'get'>
+      <input type='text' name="search" id ="search" placeholder="Search by event or artist name" width="50">
+      <button type='submit' class="search-btn">Search</button>
+    </form>
+  </div>
 <% end %>
+
